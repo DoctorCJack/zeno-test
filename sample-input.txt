@@ -1,0 +1,320 @@
+Currently running ZENO on [1;34mbods/unit-sphere.bod[0m with expansion option [0;33m0[0m
+[0;31mCAUTION![0m Unless you know what you are doing, please do not run this in the background as it changes directories!
+~/zeno-modified/zeno-build ~/zeno-tests
+[ 60%] Built target libzeno
+[100%] Built target zeno-cli
+~/zeno-tests
+[0;33m1000000 walks[0m
+[0;34mTotal number of steps taken by zeno-original:[0m
+total_steps,units,steps
+total_steps,value,3.615384e+00
+total_steps,std_dev,2.941298e-03
+hit_steps,units,steps
+hit_steps,value,3.615387e+00
+hit_steps,std_dev,2.941302e-03
+miss_steps,units,steps
+miss_steps,value,1.000000e+00
+miss_steps,std_dev,1.414210e+00
+[0;34mTotal number of steps taken by zeno-modified:[0m
+total_steps,units,steps
+total_steps,value,3.610385e+00
+total_steps,std_dev,2.942347e-03
+hit_steps,units,steps
+hit_steps,value,3.610388e+00
+hit_steps,std_dev,2.942351e-03
+miss_steps,units,steps
+miss_steps,value,1.000000e+00
+miss_steps,std_dev,1.414192e+00
+[0;32mCapacitance in original-out.csv:[0m
+capacitance,units,L
+capacitance,value,1.000001e+00
+capacitance,std_dev,1.000002e-06
+[0;32mCapacitance in modified-out.csv:[0m
+capacitance,units,L
+capacitance,value,1.000001e+00
+capacitance,std_dev,1.000002e-06
+[0;33mExpansion option 0[0;33m
+[1;34mzeno-modified[0m has an average of [1;33m-.004999[0m more [0;34mtotal steps[0m than [1;34mzeno-original[0m. (We want this number be as [0;31mnegative[0m as possible)
+[1;34mzeno-modified[0m has an average of [1;33m-.004999[0m more [0;34mhit steps[0m than [1;34mzeno-original[0m. (We want this number be as [0;31mnegative[0m as possible)
+[1;34mzeno-modified[0m has an average of [1;33m0[0m more [0;34mmiss steps[0m than [1;34mzeno-original[0m. (We want this number be as [0;31mnegative[0m as possible)
+[1;34mzeno-modified[0m has an average of [1;33m0[0m more [0;32mcapacitance[0m than [1;34mzeno-original[0m. (We want this number to be as [0;31mclose to zero[0m as possible)
+Currently running ZENO on [1;34mbods/unit-sphere.bod[0m with expansion option [0;33m1[0m
+[0;31mCAUTION![0m Unless you know what you are doing, please do not run this in the background as it changes directories!
+~/zeno-modified/zeno-build ~/zeno-tests
+[ 60%] Built target libzeno
+[100%] Built target zeno-cli
+~/zeno-tests
+[0;33m1000000 walks[0m
+[0;34mTotal number of steps taken by zeno-original:[0m
+total_steps,units,steps
+total_steps,value,3.618691e+00
+total_steps,std_dev,2.948717e-03
+hit_steps,units,steps
+hit_steps,value,3.618693e+00
+hit_steps,std_dev,2.948722e-03
+miss_steps,units,steps
+miss_steps,value,2.000000e+00
+miss_steps,std_dev,2.828427e+00
+[0;34mTotal number of steps taken by zeno-modified:[0m
+total_steps,units,steps
+total_steps,value,2.891559e+00
+total_steps,std_dev,2.293585e-03
+hit_steps,units,steps
+hit_steps,value,2.891561e+00
+hit_steps,std_dev,2.293593e-03
+miss_steps,units,steps
+miss_steps,value,2.000000e+00
+miss_steps,std_dev,1.999983e+00
+[0;32mCapacitance in original-out.csv:[0m
+capacitance,units,L
+capacitance,value,1.000001e+00
+capacitance,std_dev,1.000002e-06
+[0;32mCapacitance in modified-out.csv:[0m
+capacitance,units,L
+capacitance,value,1.000000e+00
+capacitance,std_dev,1.414216e-06
+[0;33mExpansion option 1[0;33m
+[1;34mzeno-modified[0m has an average of [1;33m-.727132[0m more [0;34mtotal steps[0m than [1;34mzeno-original[0m. (We want this number be as [0;31mnegative[0m as possible)
+[1;34mzeno-modified[0m has an average of [1;33m-.727132[0m more [0;34mhit steps[0m than [1;34mzeno-original[0m. (We want this number be as [0;31mnegative[0m as possible)
+[1;34mzeno-modified[0m has an average of [1;33m0[0m more [0;34mmiss steps[0m than [1;34mzeno-original[0m. (We want this number be as [0;31mnegative[0m as possible)
+[1;34mzeno-modified[0m has an average of [1;33m-.000001[0m more [0;32mcapacitance[0m than [1;34mzeno-original[0m. (We want this number to be as [0;31mclose to zero[0m as possible)
+Currently running ZENO on [1;34mbods/unit-sphere.bod[0m with expansion option [0;33m2[0m
+[0;31mCAUTION![0m Unless you know what you are doing, please do not run this in the background as it changes directories!
+~/zeno-modified/zeno-build ~/zeno-tests
+[ 60%] Built target libzeno
+[100%] Built target zeno-cli
+~/zeno-tests
+[0;33m1000000 walks[0m
+[0;34mTotal number of steps taken by zeno-original:[0m
+total_steps,units,steps
+total_steps,value,3.612854e+00
+total_steps,std_dev,2.945485e-03
+hit_steps,units,steps
+hit_steps,value,3.612857e+00
+hit_steps,std_dev,2.945489e-03
+miss_steps,units,steps
+miss_steps,value,1.000000e+00
+miss_steps,std_dev,1.414212e+00
+[0;34mTotal number of steps taken by zeno-modified:[0m
+total_steps,units,steps
+total_steps,value,3.388385e+00
+total_steps,std_dev,2.748901e-03
+hit_steps,units,steps
+hit_steps,value,3.388385e+00
+hit_steps,std_dev,2.748901e-03
+miss_steps,units,steps
+miss_steps,value,-nan
+miss_steps,std_dev,-nan
+[0;32mCapacitance in original-out.csv:[0m
+capacitance,units,L
+capacitance,value,1.000001e+00
+capacitance,std_dev,1.000002e-06
+[0;32mCapacitance in modified-out.csv:[0m
+capacitance,units,L
+capacitance,value,1.000002e+00
+capacitance,std_dev,0.000000e+00
+[0;33mExpansion option 2[0;33m
+[1;34mzeno-modified[0m has an average of [1;33m-.224469[0m more [0;34mtotal steps[0m than [1;34mzeno-original[0m. (We want this number be as [0;31mnegative[0m as possible)
+[1;34mzeno-modified[0m has an average of [1;33m-.224472[0m more [0;34mhit steps[0m than [1;34mzeno-original[0m. (We want this number be as [0;31mnegative[0m as possible)
+[1;34mzeno-modified[0m has an average of [1;33m-1.000000[0m more [0;34mmiss steps[0m than [1;34mzeno-original[0m. (We want this number be as [0;31mnegative[0m as possible)
+[1;34mzeno-modified[0m has an average of [1;33m.000001[0m more [0;32mcapacitance[0m than [1;34mzeno-original[0m. (We want this number to be as [0;31mclose to zero[0m as possible)
+Currently running ZENO on [1;34mbods/unit-sphere.bod[0m with expansion option [0;33m3[0m
+[0;31mCAUTION![0m Unless you know what you are doing, please do not run this in the background as it changes directories!
+~/zeno-modified/zeno-build ~/zeno-tests
+[ 60%] Built target libzeno
+[100%] Built target zeno-cli
+~/zeno-tests
+[0;33m1000000 walks[0m
+[0;34mTotal number of steps taken by zeno-original:[0m
+total_steps,units,steps
+total_steps,value,3.612979e+00
+total_steps,std_dev,2.939822e-03
+hit_steps,units,steps
+hit_steps,value,3.612984e+00
+hit_steps,std_dev,2.939830e-03
+miss_steps,units,steps
+miss_steps,value,1.000000e+00
+miss_steps,std_dev,9.999997e-01
+[0;34mTotal number of steps taken by zeno-modified:[0m
+total_steps,units,steps
+total_steps,value,3.935640e+00
+total_steps,std_dev,3.240531e-03
+hit_steps,units,steps
+hit_steps,value,3.935640e+00
+hit_steps,std_dev,3.240531e-03
+miss_steps,units,steps
+miss_steps,value,-nan
+miss_steps,std_dev,-nan
+[0;32mCapacitance in original-out.csv:[0m
+capacitance,units,L
+capacitance,value,1.000000e+00
+capacitance,std_dev,1.414216e-06
+[0;32mCapacitance in modified-out.csv:[0m
+capacitance,units,L
+capacitance,value,1.000002e+00
+capacitance,std_dev,0.000000e+00
+[0;33mExpansion option 3[0;33m
+[1;34mzeno-modified[0m has an average of [1;33m.322661[0m more [0;34mtotal steps[0m than [1;34mzeno-original[0m. (We want this number be as [0;31mnegative[0m as possible)
+[1;34mzeno-modified[0m has an average of [1;33m.322656[0m more [0;34mhit steps[0m than [1;34mzeno-original[0m. (We want this number be as [0;31mnegative[0m as possible)
+[1;34mzeno-modified[0m has an average of [1;33m-1.000000[0m more [0;34mmiss steps[0m than [1;34mzeno-original[0m. (We want this number be as [0;31mnegative[0m as possible)
+[1;34mzeno-modified[0m has an average of [1;33m.000002[0m more [0;32mcapacitance[0m than [1;34mzeno-original[0m. (We want this number to be as [0;31mclose to zero[0m as possible)
+Currently running ZENO on [1;34mbods/water.bod[0m with expansion option [0;33m0[0m
+[0;31mCAUTION![0m Unless you know what you are doing, please do not run this in the background as it changes directories!
+~/zeno-modified/zeno-build ~/zeno-tests
+[ 60%] Built target libzeno
+[100%] Built target zeno-cli
+~/zeno-tests
+[0;33m1000000 walks[0m
+[0;34mTotal number of steps taken by zeno-original:[0m
+total_steps,units,steps
+total_steps,value,2.817426e+01
+total_steps,std_dev,2.386951e-02
+hit_steps,units,steps
+hit_steps,value,4.173556e+01
+hit_steps,std_dev,4.135143e-02
+miss_steps,units,steps
+miss_steps,value,6.093129e+00
+miss_steps,std_dev,1.520186e-02
+[0;34mTotal number of steps taken by zeno-modified:[0m
+total_steps,units,steps
+total_steps,value,2.817404e+01
+total_steps,std_dev,2.388576e-02
+hit_steps,units,steps
+hit_steps,value,4.170694e+01
+hit_steps,std_dev,4.132436e-02
+miss_steps,units,steps
+miss_steps,value,6.075027e+00
+miss_steps,std_dev,1.514102e-02
+[0;32mCapacitance in original-out.csv:[0m
+capacitance,units,A
+capacitance,value,7.324432e-01
+capacitance,std_dev,5.740038e-04
+[0;32mCapacitance in modified-out.csv:[0m
+capacitance,units,A
+capacitance,value,7.332530e-01
+capacitance,std_dev,5.738037e-04
+[0;33mExpansion option 0[0;33m
+[1;34mzeno-modified[0m has an average of [1;33m-.000220[0m more [0;34mtotal steps[0m than [1;34mzeno-original[0m. (We want this number be as [0;31mnegative[0m as possible)
+[1;34mzeno-modified[0m has an average of [1;33m-.028620[0m more [0;34mhit steps[0m than [1;34mzeno-original[0m. (We want this number be as [0;31mnegative[0m as possible)
+[1;34mzeno-modified[0m has an average of [1;33m-.018102[0m more [0;34mmiss steps[0m than [1;34mzeno-original[0m. (We want this number be as [0;31mnegative[0m as possible)
+[1;34mzeno-modified[0m has an average of [1;33m.000810[0m more [0;32mcapacitance[0m than [1;34mzeno-original[0m. (We want this number to be as [0;31mclose to zero[0m as possible)
+Currently running ZENO on [1;34mbods/water.bod[0m with expansion option [0;33m1[0m
+[0;31mCAUTION![0m Unless you know what you are doing, please do not run this in the background as it changes directories!
+~/zeno-modified/zeno-build ~/zeno-tests
+[ 60%] Built target libzeno
+[100%] Built target zeno-cli
+~/zeno-tests
+[0;33m1000000 walks[0m
+[0;34mTotal number of steps taken by zeno-original:[0m
+total_steps,units,steps
+total_steps,value,2.817870e+01
+total_steps,std_dev,2.385366e-02
+hit_steps,units,steps
+hit_steps,value,4.170648e+01
+hit_steps,std_dev,4.127345e-02
+miss_steps,units,steps
+miss_steps,value,6.079698e+00
+miss_steps,std_dev,1.514487e-02
+[0;34mTotal number of steps taken by zeno-modified:[0m
+total_steps,units,steps
+total_steps,value,2.677977e+01
+total_steps,std_dev,2.277446e-02
+hit_steps,units,steps
+hit_steps,value,3.946747e+01
+hit_steps,std_dev,3.947140e-02
+miss_steps,units,steps
+miss_steps,value,6.086155e+00
+miss_steps,std_dev,1.516208e-02
+[0;32mCapacitance in original-out.csv:[0m
+capacitance,units,A
+capacitance,value,7.333583e-01
+capacitance,std_dev,5.737774e-04
+[0;32mCapacitance in modified-out.csv:[0m
+capacitance,units,A
+capacitance,value,7.329137e-01
+capacitance,std_dev,5.738869e-04
+[0;33mExpansion option 1[0;33m
+[1;34mzeno-modified[0m has an average of [1;33m-1.398930[0m more [0;34mtotal steps[0m than [1;34mzeno-original[0m. (We want this number be as [0;31mnegative[0m as possible)
+[1;34mzeno-modified[0m has an average of [1;33m-2.239010[0m more [0;34mhit steps[0m than [1;34mzeno-original[0m. (We want this number be as [0;31mnegative[0m as possible)
+[1;34mzeno-modified[0m has an average of [1;33m.006457[0m more [0;34mmiss steps[0m than [1;34mzeno-original[0m. (We want this number be as [0;31mnegative[0m as possible)
+[1;34mzeno-modified[0m has an average of [1;33m-.000445[0m more [0;32mcapacitance[0m than [1;34mzeno-original[0m. (We want this number to be as [0;31mclose to zero[0m as possible)
+Currently running ZENO on [1;34mbods/water.bod[0m with expansion option [0;33m2[0m
+[0;31mCAUTION![0m Unless you know what you are doing, please do not run this in the background as it changes directories!
+~/zeno-modified/zeno-build ~/zeno-tests
+[ 60%] Built target libzeno
+[100%] Built target zeno-cli
+~/zeno-tests
+[0;33m1000000 walks[0m
+[0;34mTotal number of steps taken by zeno-original:[0m
+total_steps,units,steps
+total_steps,value,2.816337e+01
+total_steps,std_dev,2.387209e-02
+hit_steps,units,steps
+hit_steps,value,4.168756e+01
+hit_steps,std_dev,4.129989e-02
+miss_steps,units,steps
+miss_steps,value,6.077436e+00
+miss_steps,std_dev,1.516201e-02
+[0;34mTotal number of steps taken by zeno-modified:[0m
+total_steps,units,steps
+total_steps,value,2.193689e+01
+total_steps,std_dev,1.867424e-02
+hit_steps,units,steps
+hit_steps,value,3.244801e+01
+hit_steps,std_dev,3.266446e-02
+miss_steps,units,steps
+miss_steps,value,5.049476e+00
+miss_steps,std_dev,1.192050e-02
+[0;32mCapacitance in original-out.csv:[0m
+capacitance,units,A
+capacitance,value,7.332672e-01
+capacitance,std_dev,5.737990e-04
+[0;32mCapacitance in modified-out.csv:[0m
+capacitance,units,A
+capacitance,value,7.287119e-01
+capacitance,std_dev,5.749097e-04
+[0;33mExpansion option 2[0;33m
+[1;34mzeno-modified[0m has an average of [1;33m-6.226480[0m more [0;34mtotal steps[0m than [1;34mzeno-original[0m. (We want this number be as [0;31mnegative[0m as possible)
+[1;34mzeno-modified[0m has an average of [1;33m-9.239550[0m more [0;34mhit steps[0m than [1;34mzeno-original[0m. (We want this number be as [0;31mnegative[0m as possible)
+[1;34mzeno-modified[0m has an average of [1;33m-1.027960[0m more [0;34mmiss steps[0m than [1;34mzeno-original[0m. (We want this number be as [0;31mnegative[0m as possible)
+[1;34mzeno-modified[0m has an average of [1;33m-.004556[0m more [0;32mcapacitance[0m than [1;34mzeno-original[0m. (We want this number to be as [0;31mclose to zero[0m as possible)
+Currently running ZENO on [1;34mbods/water.bod[0m with expansion option [0;33m3[0m
+[0;31mCAUTION![0m Unless you know what you are doing, please do not run this in the background as it changes directories!
+~/zeno-modified/zeno-build ~/zeno-tests
+[ 60%] Built target libzeno
+[100%] Built target zeno-cli
+~/zeno-tests
+[0;33m1000000 walks[0m
+[0;34mTotal number of steps taken by zeno-original:[0m
+total_steps,units,steps
+total_steps,value,2.822193e+01
+total_steps,std_dev,2.387577e-02
+hit_steps,units,steps
+hit_steps,value,4.172268e+01
+hit_steps,std_dev,4.127146e-02
+miss_steps,units,steps
+miss_steps,value,6.108254e+00
+miss_steps,std_dev,1.524279e-02
+[0;34mTotal number of steps taken by zeno-modified:[0m
+total_steps,units,steps
+total_steps,value,2.836544e+01
+total_steps,std_dev,2.404192e-02
+hit_steps,units,steps
+hit_steps,value,4.202614e+01
+hit_steps,std_dev,4.159411e-02
+miss_steps,units,steps
+miss_steps,value,6.072593e+00
+miss_steps,std_dev,1.516182e-02
+[0;32mCapacitance in original-out.csv:[0m
+capacitance,units,A
+capacitance,value,7.340995e-01
+capacitance,std_dev,5.735887e-04
+[0;32mCapacitance in modified-out.csv:[0m
+capacitance,units,A
+capacitance,value,7.330674e-01
+capacitance,std_dev,5.738499e-04
+[0;33mExpansion option 3[0;33m
+[1;34mzeno-modified[0m has an average of [1;33m.143510[0m more [0;34mtotal steps[0m than [1;34mzeno-original[0m. (We want this number be as [0;31mnegative[0m as possible)
+[1;34mzeno-modified[0m has an average of [1;33m.303460[0m more [0;34mhit steps[0m than [1;34mzeno-original[0m. (We want this number be as [0;31mnegative[0m as possible)
+[1;34mzeno-modified[0m has an average of [1;33m-.035661[0m more [0;34mmiss steps[0m than [1;34mzeno-original[0m. (We want this number be as [0;31mnegative[0m as possible)
+[1;34mzeno-modified[0m has an average of [1;33m-.001032[0m more [0;32mcapacitance[0m than [1;34mzeno-original[0m. (We want this number to be as [0;31mclose to zero[0m as possible)
