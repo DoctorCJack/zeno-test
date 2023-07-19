@@ -11,7 +11,7 @@ f=${1:-bods/unit-sphere.bod}
 e=${2:-0}
 numWalks=1000000
 echo -e "${RED}CAUTION!${NC} Unless you know what you are doing, please do not run this in the background as it changes directories!"
-pushd ../zeno-run-modified/zeno-build/
+pushd ~/zeno-run-modified/zeno-build/
 make
 popd
 ~/zeno-original/zeno-build/zeno -i $f --num-walks=$numWalks --num-interior-samples=100000 --csv-output-file original-out.csv > zeno-output.txt
