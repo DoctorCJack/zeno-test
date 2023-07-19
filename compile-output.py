@@ -8,8 +8,8 @@ def num_from_df(df, name, type):
   return result
 
 # Instantiate stuff
-everything = dict(list())
-dir = "./csvs"
+everything = dict(list()) # Dictionary where keys are bods and values are lists of dataframes
+dir = "./csvs" # Where the input csvs are located
 num_mods = 2 + 18 # The first 2 are zeno-original and the base case in zeno-modified
 averages = [[0] * (num_mods - 1) for i in range(4)]
 
@@ -17,10 +17,15 @@ averages = [[0] * (num_mods - 1) for i in range(4)]
 for filename in os.listdir(dir):
   csv = pd.read_csv(os.path.join(dir, filename))
   csv.columns = ["name", "type", "value"]
+  # Matches on the filename to get the list ["modified", <bod filename>, <expansion option>]
   regex = re.search("^(modified)-(.*)-([0-9]+).csv$", filename)
+  # If the filename didn't match, then match on the filename to get the list ["original", <bod filename>]
   if(regex == None):
     regex = re.search("^(original)-(.*).csv$", filename)
   g = regex.groups()
+  # g[0] is "original" or "modified"
+  # g[1] is the bod filename
+  # g[2] is the expansion option
   if g[1] not in everything.keys():
     everything[g[1]] = list(range(num_mods))
   if g[0] == "modified":
@@ -37,6 +42,8 @@ result = ("Each list here shows the difference of means between the original out
 "The format for each element is <char><num>:<value> where the chars correspond as follows:\n"
 "t - total_steps\nh - hit_steps\nm - miss_steps\nc - capacitance\n\n")
 cols = [f"{c}{i}" for c in ['t', 'h', 'm', 'c'] for i in range(num_mods - 1)]
+# `df` is used only for the .csv output and `result` is used only for the .txt output
+# Both are worked on at the same time to prevent duplicate control flows
 df = pd.DataFrame(columns = cols)
 for bod in sorted(everything.keys()):
   df.loc[bod] = [0] * ((num_mods - 1) * 4)
@@ -59,9 +66,9 @@ for bod in sorted(everything.keys()):
     mod_df = curr[i]
     mod_total_steps_mean = num_from_df(mod_df, "total_steps", "value")
     mod_total_steps_sd = num_from_df(mod_df, "total_steps", "std_dev")
-    diff = (mod_total_steps_mean - og_total_steps_mean) / og_total_steps_sd
     # p-values ended up being unreliable since they were only returning a 1.0 or a 0.0 depending on if the mean was off by a millionth of a unit or not
     # As a replacement, I will be using the difference between means measured in standard deviations
+    diff = (mod_total_steps_mean - og_total_steps_mean) / og_total_steps_sd
     result += f"t{i - 1}:{round(diff, 6)}; "
     averages[0][i - 1] += diff
     df.loc[bod, f"t{i - 1}"] = round(diff, 6)
