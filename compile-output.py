@@ -1,5 +1,3 @@
-import sys
-from scipy.stats import ttest_ind_from_stats
 import re
 import pandas as pd
 import os
@@ -30,7 +28,7 @@ for filename in os.listdir(dir):
   else:
     everything[g[1]][0] = csv
 
-# Process the data structures created in the last step and
+# Process the data structures created in the previous step and
 # convert them into the contents of the output files
 result = ("Each list here shows the difference of means between the original output and "
 "the modified output measured in the original output's standard deviations.\n"
@@ -97,7 +95,6 @@ for bod in sorted(everything.keys()):
   result += f"\b\b]{' *' if og_capac_sd < 0.001 else ''}\tmean:{og_capac_mean} sd:{og_capac_sd}"
   result += "\n\n"
 result += "AVERAGES:\n"
-# flat_list = [item for sublist in l for item in sublist]
 df.loc["AVERAGES"] = [round(e / len(everything.keys()), 6) for lst in averages for e in lst]
 for sublist in averages:
   result += f"    ["
