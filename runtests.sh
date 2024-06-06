@@ -15,7 +15,7 @@ pushd ~/zeno-run-modified/zeno-build/
 make
 popd
 ~/zeno-original/zeno-build/zeno -i $f --num-walks=$numWalks --num-interior-samples=100000 --csv-output-file original-out.csv > zeno-output.txt
-~/zeno-modified/zeno-build/zeno -i $f --num-walks=$numWalks --num-interior-samples=100000 --csv-output-file modified-out.csv --expansion=$e >> zeno-output.txt
+~/zeno-run-modified/zeno-build/zeno -i $f --num-walks=$numWalks --num-interior-samples=100000 --csv-output-file modified-out.csv --expansion=$e >> zeno-output.txt
 echo -e "${ORANGE}${numWalks} walks${NC}"
 echo -e "${BLUE}Total number of steps taken by zeno-original:${NC}"
 cat original-out.csv | grep steps
