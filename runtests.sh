@@ -11,11 +11,11 @@ f=${1:-bods/unit-sphere.bod}
 e=${2:-0}
 numWalks=1000000
 echo -e "${RED}CAUTION!${NC} Unless you know what you are doing, please do not run this in the background as it changes directories!"
-pushd ~/zeno-run-modified/zeno-build/
+pushd ~/zeno-modified/zeno-build/
 make
 popd
-~/zeno-run-modified/zeno-build/zeno -i $f --num-walks=$numWalks --num-interior-samples=100000 --csv-output-file original-out.csv --expansion=0 > zeno-output.txt
-~/zeno-run-modified/zeno-build/zeno -i $f --num-walks=$numWalks --num-interior-samples=100000 --csv-output-file modified-out.csv --expansion=$e >> zeno-output.txt
+~/zeno-modified/zeno-build/zeno -i $f --num-walks=$numWalks --num-interior-samples=100000 --csv-output-file original-out.csv --expansion=0 > zeno-output.txt
+~/zeno-modified/zeno-build/zeno -i $f --num-walks=$numWalks --num-interior-samples=100000 --csv-output-file modified-out.csv --expansion=$e >> zeno-output.txt
 echo -e "${ORANGE}${numWalks} walks${NC}"
 echo -e "${BLUE}Total number of steps taken by zeno-original:${NC}"
 cat original-out.csv | grep steps
