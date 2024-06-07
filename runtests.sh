@@ -1,5 +1,7 @@
 #! /bin/bash
 
+source ./filepath.cfg
+
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'
@@ -11,11 +13,11 @@ f=${1:-bods/unit-sphere.bod}
 e=${2:-0}
 numWalks=1000000
 echo -e "${RED}CAUTION!${NC} Unless you know what you are doing, please do not run this in the background as it changes directories!"
-pushd ~/zeno-modified/zeno-build/
+pushd ${fp}/zeno-build/
 make
 popd
-~/zeno-modified/zeno-build/zeno -i $f --num-walks=$numWalks --num-interior-samples=100000 --csv-output-file original-out.csv --expansion=0 > zeno-output.txt
-~/zeno-modified/zeno-build/zeno -i $f --num-walks=$numWalks --num-interior-samples=100000 --csv-output-file modified-out.csv --expansion=$e >> zeno-output.txt
+${fp}/zeno-build/zeno -i $f --num-walks=$numWalks --num-interior-samples=100000 --csv-output-file original-out.csv --expansion=0 > zeno-output.txt
+${fp}/zeno-build/zeno -i $f --num-walks=$numWalks --num-interior-samples=100000 --csv-output-file modified-out.csv --expansion=$e >> zeno-output.txt
 echo -e "${ORANGE}${numWalks} walks${NC}"
 echo -e "${BLUE}Total number of steps taken by zeno-original:${NC}"
 cat original-out.csv | grep steps
