@@ -1,7 +1,5 @@
 #! /bin/bash
 
-# Deprecated
-
 source ./filepath.cfg
 
 f=${1:-bods/unit-sphere.bod}
