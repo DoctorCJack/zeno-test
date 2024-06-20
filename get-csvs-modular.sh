@@ -25,10 +25,10 @@ fi
 iter=($(grep "iter" checkpoint.csv | cut -d "," -f2-))
 bod=($(grep "bod" checkpoint.csv | cut -d "," -f2-))
 expansion=($(grep "expansion" checkpoint.csv | cut -d "," -f2-))
-echo $totalIters
-echo $iter
-echo $bod
-echo $expansion
+# echo $totalIters
+# echo $iter
+# echo $bod
+# echo $expansion
 
 echo -e "${RED}CAUTION!${NC} Unless you know what you are doing, please do not run this in the background as it changes directories!"
 pushd ${fp}/zeno-build/
@@ -57,6 +57,7 @@ for ((i=${iter}; i<${totalIters}; i++)); do
             fi
             # echo "e: " $e
             # echo "i: " $i " b: " $b " e: " $e
+            ${fp}/zeno-build/zeno -i bods/${b}.bod --num-walks=10000000 --num-interior-samples=100000 --seed=${i} --csv-output-file csvs-modular/${i}-${b}-${e}.csv --expansion=$e > /dev/null;
         done
     done
 done
