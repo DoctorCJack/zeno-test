@@ -13,6 +13,7 @@ if [ ! -f ./checkpoint.csv ]; then
     echo -e "total,${totalIters}\niter,0\nbod,${firstBod}\nexpansion,0" > checkpoint.csv
 else
     echo -e "${ORANGE}NOTICE!${NC} File checkpoint.csv already exists. The passed in parameter (if it exists) will be ignored."
+    echo -e "${RED}CAUTION!${NC} If you want to restart the testing process, please delete checkpoint.csv."
 fi
 temp=($(grep "total" checkpoint.csv | cut -d "," -f2-))
 if [ "$temp" != "" ]; then
@@ -29,7 +30,33 @@ echo $iter
 echo $bod
 echo $expansion
 
-# echo -e "${RED}CAUTION!${NC} Unless you know what you are doing, please do not run this in the background as it changes directories!"
-# pushd ${fp}/zeno-build/
-# make
-# popd
+echo -e "${RED}CAUTION!${NC} Unless you know what you are doing, please do not run this in the background as it changes directories!"
+pushd ${fp}/zeno-build/
+make
+popd
+
+foundStart=false
+firstIteration=true
+
+for ((i=${iter}; i<${totalIters}; i++)); do
+    # echo "i: " $i
+    for b in $(ls bods); do
+        b=$(echo $b | cut -d. -f 1)
+        if [ $foundStart = false ]; then
+            if [ $b = $bod ]; then
+                foundStart=true
+            else
+                continue
+            fi
+        fi
+        # echo "b: " $b
+        for ((e=0; e<=18; e++)); do
+            if [ $firstIteration = true ]; then
+                e=$expansion
+                firstIteration=false
+            fi
+            # echo "e: " $e
+            echo "t: " $totalIters " i: " $i " b: " $b " e: " $e
+        done
+    done
+done
