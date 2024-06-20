@@ -1,6 +1,6 @@
 #! /bin/bash
 
-source ./filepath.cfg
+source ./config.cfg
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'

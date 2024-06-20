@@ -1,6 +1,6 @@
 #! /bin/bash
 
-source ./filepath.cfg
+source ./config.cfg
 
 RED='\033[0;31m'
 ORANGE='\033[0;33m'
@@ -50,13 +50,13 @@ for ((i=${iter}; i<${totalIters}; i++)); do
             fi
         fi
         # echo "b: " $b
-        for ((e=0; e<=18; e++)); do
+        for ((e=0; e<=${numExpansions}; e++)); do
             if [ $firstIteration = true ]; then
                 e=$expansion
                 firstIteration=false
             fi
             # echo "e: " $e
-            echo "t: " $totalIters " i: " $i " b: " $b " e: " $e
+            # echo "i: " $i " b: " $b " e: " $e
         done
     done
 done

@@ -1,6 +1,6 @@
 #! /bin/bash
 
-source ./filepath.cfg
+source ./config.cfg
 
 f=${1:-bods/unit-sphere.bod}
 e=${2:-0}
