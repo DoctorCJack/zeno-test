@@ -9,15 +9,20 @@ YELLOW='\033[1;33m'
 LB='\033[1;34m'
 ORANGE='\033[0;33m'
 NC='\033[0m' # No Color
+
 f=${1:-bods/unit-sphere.bod}
 e=${2:-0}
+
 numWalks=1000000
+
 echo -e "${RED}CAUTION!${NC} Unless you know what you are doing, please do not run this in the background as it changes directories!"
 pushd ${fp}/zeno-build/
 make
 popd
+
 ${fp}/zeno-build/zeno -i $f --num-walks=$numWalks --num-interior-samples=100000 --csv-output-file original-out.csv --expansion=0 > zeno-output.txt
 ${fp}/zeno-build/zeno -i $f --num-walks=$numWalks --num-interior-samples=100000 --csv-output-file modified-out.csv --expansion=$e >> zeno-output.txt
+
 echo -e "${ORANGE}${numWalks} walks${NC}"
 echo -e "${BLUE}Total number of steps taken by zeno-original:${NC}"
 cat original-out.csv | grep steps
@@ -37,11 +42,13 @@ originalArrCapacitance=($(grep "capacitance" original-out.csv | cut -d "," -f3-)
 # [units, mean, std_dev]
 modifiedArrCapacitance=($(grep "capacitance" modified-out.csv | cut -d "," -f3-))
 
+# Change numbers from scientific notation to standard notation
 for i in {0..8}; do
   originalArrSteps[$i]=$(sed -E 's/([+-]?[0-9.]+)[eE]\+?(-?)([0-9]+)/(\1*10^\2\3)/g' <<< ${originalArrSteps[$i]});
   modifiedArrSteps[$i]=$(sed -E 's/([+-]?[0-9.]+)[eE]\+?(-?)([0-9]+)/(\1*10^\2\3)/g' <<< ${modifiedArrSteps[$i]});
 done
 
+# Change numbers from scientific notation to standard notation
 for i in {0..2}; do
   originalArrCapacitance[$i]=$(sed -E 's/([+-]?[0-9.]+)[eE]\+?(-?)([0-9]+)/(\1*10^\2\3)/g' <<< ${originalArrCapacitance[$i]});
   modifiedArrCapacitance[$i]=$(sed -E 's/([+-]?[0-9.]+)[eE]\+?(-?)([0-9]+)/(\1*10^\2\3)/g' <<< ${modifiedArrCapacitance[$i]});

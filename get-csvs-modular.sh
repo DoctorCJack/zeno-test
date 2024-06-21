@@ -18,6 +18,7 @@ else
     echo -e "${ORANGE}NOTICE!${NC} File checkpoint.csv already exists. The passed in parameter (if it exists) will be ignored."
     echo -e "${RED}CAUTION!${NC} If you want to restart the testing process, please delete checkpoint.csv."
 fi
+
 temp=($(grep "total" checkpoint.csv | cut -d "," -f2-))
 if [ "$temp" != "" ]; then
     totalIters=$temp
@@ -37,6 +38,7 @@ firstIteration=true
 for ((i=${iter}; i<${totalIters}; i++)); do
     for b in $(ls bods); do
         b=$(echo $b | cut -d. -f 1)
+        # Start at the bod specified in the checkpoint file.
         if [ $foundStart = false ]; then
             if [ $b = $bod ]; then
                 foundStart=true
@@ -45,6 +47,7 @@ for ((i=${iter}; i<${totalIters}; i++)); do
             fi
         fi
         for ((e=0; e<=${numExpansions}; e++)); do
+            # Start at the expansion specified in the checkpoint file.
             if [ $firstIteration = true ]; then
                 e=$expansion
                 firstIteration=false
@@ -54,6 +57,7 @@ for ((i=${iter}; i<${totalIters}; i++)); do
                 echo -e "Now creating ${LB}${i}-${b}-control.csv${NC}"
                 ${fp}/zeno-build/zeno -i bods/${b}.bod --num-walks=10000000 --num-interior-samples=100000 --seed=$(($i + $totalIters)) --csv-output-file csvs-modular/${i}-${b}-control.csv --expansion=0 > /dev/null;
             fi
+            # Update the checkpoint file.
             echo -e "total,${totalIters}\niter,${i}\nbod,${b}\nexpansion,${e}" > checkpoint.csv
             echo -e "Now creating ${LB}${i}-${b}-${e}.csv${NC}"
             ${fp}/zeno-build/zeno -i bods/${b}.bod --num-walks=10000000 --num-interior-samples=100000 --seed=${i} --csv-output-file csvs-modular/${i}-${b}-${e}.csv --expansion=$e > /dev/null;
