@@ -5,6 +5,7 @@ source ./config.cfg
 RED='\033[0;31m'
 ORANGE='\033[0;33m'
 LB='\033[1;34m'
+GREEN='\033[0;32m'
 NC='\033[0m' # No Color
 
 totalIters=${1:-1}
@@ -48,7 +49,7 @@ for ((i=${iter}; i<${totalIters}; i++)); do
                 e=$expansion
                 firstIteration=false
             fi
-            # This solution isn't ideal (as it may be a bit slower if a break happens between bods), but it works.
+            # This solution isn't ideal (as it may be a bit slower if a break happens when generating a control), but it works.
             if [ $e = 0 ]; then
                 echo -e "Now creating ${LB}${i}-${b}-control.csv${NC}"
                 ${fp}/zeno-build/zeno -i bods/${b}.bod --num-walks=10000000 --num-interior-samples=100000 --seed=$(($i + $totalIters)) --csv-output-file csvs-modular/${i}-${b}-control.csv --expansion=0 > /dev/null;
@@ -59,3 +60,4 @@ for ((i=${iter}; i<${totalIters}; i++)); do
         done
     done
 done
+echo -e "${GREEN}DONE!${NC}"
