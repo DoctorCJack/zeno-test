@@ -57,6 +57,9 @@ for ((i=${iter}; i<${totalIters}; i++)); do
             fi
             # echo "e: " $e
             # echo "i: " $i " b: " $b " e: " $e
+            if [ $e = 0 ]; then
+                ${fp}/zeno-build/zeno -i bods/${b}.bod --num-walks=10000000 --num-interior-samples=100000 --seed=$(($i + $totalIters)) --csv-output-file csvs-modular/${i}-${b}-control.csv --expansion=0 > /dev/null;
+            fi
             echo -e "total,${totalIters}\niter,${i}\nbod,${b}\nexpansion,${e}" > checkpoint.csv
             ${fp}/zeno-build/zeno -i bods/${b}.bod --num-walks=10000000 --num-interior-samples=100000 --seed=${i} --csv-output-file csvs-modular/${i}-${b}-${e}.csv --expansion=$e > /dev/null;
         done
