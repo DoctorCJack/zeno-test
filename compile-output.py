@@ -7,10 +7,14 @@ def num_from_df(df, name, type):
   result = float(("%.8f" % float(result)).rstrip('0').rstrip('.')) # Converts a string in scientific notation to a float I can work with
   return result
 
+# Get the number of expansions from config.cfg
+with open("config.cfg", "r") as f:
+  num_expansions = int(re.search("numExpansions=([0-9]+)", f.read()).groups()[0])
+
 # Instantiate stuff
 everything = dict(list()) # Dictionary where keys are bods and values are lists of dataframes
 dir = "./csvs" # Where the input csvs are located
-num_mods = 2 + 18 # The first 2 are zeno-original and the base case in zeno-modified
+num_mods = 2 + num_expansions # The first 2 are zeno-original and the base case in zeno-modified
 averages = [[0] * (num_mods - 1) for i in range(4)]
 
 # Process the files and put all the necessary data into data structures
