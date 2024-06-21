@@ -17,18 +17,11 @@ else
 fi
 temp=($(grep "total" checkpoint.csv | cut -d "," -f2-))
 if [ "$temp" != "" ]; then
-    # if [ $totalIters != -1 ]; then
-    #     echo -e "${RED}WARNING!${NC} A total number of iterations already exists in the checkpoint file. This value was chosen over the new input."
-    # fi
     totalIters=$temp
 fi
 iter=($(grep "iter" checkpoint.csv | cut -d "," -f2-))
 bod=($(grep "bod" checkpoint.csv | cut -d "," -f2-))
 expansion=($(grep "expansion" checkpoint.csv | cut -d "," -f2-))
-# echo $totalIters
-# echo $iter
-# echo $bod
-# echo $expansion
 
 echo -e "${RED}CAUTION!${NC} Unless you know what you are doing, please do not run this in the background as it changes directories!"
 pushd ${fp}/zeno-build/
@@ -39,7 +32,6 @@ foundStart=false
 firstIteration=true
 
 for ((i=${iter}; i<${totalIters}; i++)); do
-    # echo "i: " $i
     for b in $(ls bods); do
         b=$(echo $b | cut -d. -f 1)
         if [ $foundStart = false ]; then
@@ -49,14 +41,11 @@ for ((i=${iter}; i<${totalIters}; i++)); do
                 continue
             fi
         fi
-        # echo "b: " $b
         for ((e=0; e<=${numExpansions}; e++)); do
             if [ $firstIteration = true ]; then
                 e=$expansion
                 firstIteration=false
             fi
-            # echo "e: " $e
-            # echo "i: " $i " b: " $b " e: " $e
             # This solution isn't ideal (as it may be a bit slower if a break happens between bods), but it works.
             if [ $e = 0 ]; then
                 ${fp}/zeno-build/zeno -i bods/${b}.bod --num-walks=10000000 --num-interior-samples=100000 --seed=$(($i + $totalIters)) --csv-output-file csvs-modular/${i}-${b}-control.csv --expansion=0 > /dev/null;
