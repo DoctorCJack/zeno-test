@@ -4,7 +4,9 @@ source ./config.cfg
 
 RED='\033[0;31m'
 ORANGE='\033[0;33m'
+LB='\033[1;34m'
 NC='\033[0m' # No Color
+
 totalIters=${1:-1}
 
 if [ ! -f ./checkpoint.csv ]; then
@@ -48,9 +50,11 @@ for ((i=${iter}; i<${totalIters}; i++)); do
             fi
             # This solution isn't ideal (as it may be a bit slower if a break happens between bods), but it works.
             if [ $e = 0 ]; then
+                echo -e "${LB}${i}-${b}-control.csv${NC} is now being created"
                 ${fp}/zeno-build/zeno -i bods/${b}.bod --num-walks=10000000 --num-interior-samples=100000 --seed=$(($i + $totalIters)) --csv-output-file csvs-modular/${i}-${b}-control.csv --expansion=0 > /dev/null;
             fi
             echo -e "total,${totalIters}\niter,${i}\nbod,${b}\nexpansion,${e}" > checkpoint.csv
+            echo -e "${LB}${i}-${b}-${e}.csv${NC} is now being created"
             ${fp}/zeno-build/zeno -i bods/${b}.bod --num-walks=10000000 --num-interior-samples=100000 --seed=${i} --csv-output-file csvs-modular/${i}-${b}-${e}.csv --expansion=$e > /dev/null;
         done
     done
