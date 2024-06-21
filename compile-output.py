@@ -50,7 +50,7 @@ cols = [f"{c}{i}" for c in ['t', 'h', 'm', 'c'] for i in range(num_mods - 1)]
 # Both are worked on at the same time to prevent duplicate control flows
 df = pd.DataFrame(columns = cols)
 for bod in sorted(everything.keys()):
-  df.loc[bod] = [0] * ((num_mods - 1) * 4)
+  df.loc[bod] = [0.0] * ((num_mods - 1) * 4)
   result += f"{bod}:\n    ["
   curr = everything[bod]
   og_df = curr[0]
