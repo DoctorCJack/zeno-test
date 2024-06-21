@@ -57,6 +57,7 @@ for ((i=${iter}; i<${totalIters}; i++)); do
             fi
             # echo "e: " $e
             # echo "i: " $i " b: " $b " e: " $e
+            # This solution isn't ideal (as it may be a bit slower if a break happens between bods), but it works.
             if [ $e = 0 ]; then
                 ${fp}/zeno-build/zeno -i bods/${b}.bod --num-walks=10000000 --num-interior-samples=100000 --seed=$(($i + $totalIters)) --csv-output-file csvs-modular/${i}-${b}-control.csv --expansion=0 > /dev/null;
             fi
