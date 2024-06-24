@@ -42,13 +42,13 @@ originalArrCapacitance=($(grep "capacitance" original-out.csv | cut -d "," -f3-)
 # [units, mean, std_dev]
 modifiedArrCapacitance=($(grep "capacitance" modified-out.csv | cut -d "," -f3-))
 
-# Change numbers from scientific notation to standard notation
+# Change numbers from E x notation to 10^x notation
 for i in {0..8}; do
   originalArrSteps[$i]=$(sed -E 's/([+-]?[0-9.]+)[eE]\+?(-?)([0-9]+)/(\1*10^\2\3)/g' <<< ${originalArrSteps[$i]});
   modifiedArrSteps[$i]=$(sed -E 's/([+-]?[0-9.]+)[eE]\+?(-?)([0-9]+)/(\1*10^\2\3)/g' <<< ${modifiedArrSteps[$i]});
 done
 
-# Change numbers from scientific notation to standard notation
+# Change numbers from E x notation to 10^x notation
 for i in {0..2}; do
   originalArrCapacitance[$i]=$(sed -E 's/([+-]?[0-9.]+)[eE]\+?(-?)([0-9]+)/(\1*10^\2\3)/g' <<< ${originalArrCapacitance[$i]});
   modifiedArrCapacitance[$i]=$(sed -E 's/([+-]?[0-9.]+)[eE]\+?(-?)([0-9]+)/(\1*10^\2\3)/g' <<< ${modifiedArrCapacitance[$i]});
