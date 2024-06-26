@@ -9,15 +9,15 @@ def num_from_df(df, name, type):
 
 # Get the number of expansions from config.cfg
 with open("config.cfg", "r") as f:
-  num_expansions = int(re.search("numExpansions=([0-9]+)", f.read()).groups()[0])
+  s = f.read()
+  num_expansions = int(re.search("numExpansions=([0-9]+)", s).groups()[0])
+  num_iters = int(re.search("numIters=([0-9]+)", s).groups()[0])
 
 # Instantiate stuff
 everything = dict(list()) # Dictionary where keys are bods and values are 2D lists of dataframes
 dir = "./csvs-modular" # Where the input csvs are located
 num_mods = 2 + num_expansions # The first 2 are zeno-original and the base case in zeno-modified
 averages = [[0] * (num_mods - 1) for i in range(4)]
-
-num_iters = 2 # (temporary placeholder until I determine how to get the number of iterations here)
 
 # Process the files and put all the necessary data into data structures
 for filename in os.listdir(dir):
