@@ -119,6 +119,25 @@ for iter in range(num_iters):
     result += f"\b\b]\n"
 
   # Write output into the output files
+  if not os.path.isdir("./outs"):
+    os.mkdir("./outs")
   with open(f"outs/out-{iter}.txt", "w") as f:
     f.write(result)
   df.to_csv(f"outs/out-{iter}.csv")
+
+# Compile the output files in ./outs
+final_dfs = list(range(num_iters)) # List of dataframes
+for i in range(num_iters):
+  final_dfs[i] = pd.read_csv(f"outs/out-{i}.csv").iloc[-1:, 1:] # So that I only have the numbers on the row AVERAGES
+  # print(final_dfs[i]) # debug
+
+result = None
+for df in final_dfs:
+  if type(result) == type(None):
+    result = df
+  else:
+    result += df
+
+# print(result) # debug
+
+result.to_csv("out-modular.csv")
