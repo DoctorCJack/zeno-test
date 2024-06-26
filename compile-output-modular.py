@@ -1,6 +1,7 @@
 import re
 import pandas as pd
 import os
+import matplotlib.pyplot as plt
 
 def num_from_df(df, name, type):
   result = list(df.loc[(df["name"] == name) & (df["type"] == type)]["value"])[0] # There should always be exactly one element in this list
@@ -141,3 +142,20 @@ for df in final_dfs:
 # print(result) # debug
 
 result.to_csv("out-modular.csv")
+# This redundancy is done so that I can make sure the csv is saved properly during debugging. The redundancy may be removed later.
+data = pd.read_csv("out-modular.csv")
+
+print(data) # debug
+
+# Graph the total step differences and the absolute capacitance differences
+steps = data.iloc[:,1:num_mods].values.tolist()[0]
+capac = data.iloc[:,(-num_mods + 1):].values.tolist()[0]
+print(list(range(num_mods - 1))) # debug
+print(steps) # debug
+print(list(range(num_mods - 1))) # debug
+print(capac) # debug
+plt.bar(range(num_mods - 1), steps)
+plt.savefig("steps_large_modular.png")
+plt.clf()
+plt.bar(range(num_mods - 1), capac)
+plt.savefig("capac_large_modular.png")
