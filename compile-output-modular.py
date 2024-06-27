@@ -2,6 +2,7 @@ import re
 import pandas as pd
 import os
 import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
 
 def num_from_df(df, name, type):
   result = list(df.loc[(df["name"] == name) & (df["type"] == type)]["value"])[0] # There should always be exactly one element in this list
@@ -145,17 +146,35 @@ result.to_csv("out-modular.csv")
 # This redundancy is done so that I can make sure the csv is saved properly during debugging. The redundancy may be removed later.
 data = pd.read_csv("out-modular.csv")
 
-print(data) # debug
+# print(data) # debug
 
 # Graph the total step differences and the absolute capacitance differences
+nums = list(range(num_mods - 1))
 steps = data.iloc[:,1:num_mods].values.tolist()[0]
-capac = data.iloc[:,(-num_mods + 1):].values.tolist()[0]
-print(list(range(num_mods - 1))) # debug
-print(steps) # debug
-print(list(range(num_mods - 1))) # debug
-print(capac) # debug
-plt.bar(range(num_mods - 1), steps)
+capac = [abs(i) for i in data.iloc[:,(-num_mods + 1):].values.tolist()[0]]
+colors = ['red'] * 1 + ['orange'] * 5 + ['yellow'] * 3 + ['green'] * 9 + ['blue'] * 1
+
+red_patch = mpatches.Patch(color='red', label='Control')
+orange_patch = mpatches.Patch(color='orange', label='Constant >=e')
+yellow_patch = mpatches.Patch(color='yellow', label='Constant <e')
+green_patch = mpatches.Patch(color='green', label='Proportional')
+blue_patch = mpatches.Patch(color='blue', label='Random')
+
+plt.bar(nums, steps, align='center', alpha=0.5, color=colors)
+plt.xticks(nums, nums)
+plt.xlabel('Method of Expansion Number')
+plt.ylabel('Difference in standard deviations')
+plt.errorbar(nums, steps, yerr = 1, fmt ='_', color = 'black')
+plt.title('Total Steps')
+plt.legend(handles=[red_patch, orange_patch, yellow_patch, green_patch, blue_patch])
 plt.savefig("steps_large_modular.png")
+
 plt.clf()
-plt.bar(range(num_mods - 1), capac)
+plt.bar(nums, capac, align='center', alpha=0.5, color=colors)
+plt.xticks(nums, nums)
+plt.xlabel('Method of Expansion Number')
+plt.ylabel('|Difference in standard deviations|')
+plt.errorbar(nums, capac, yerr = 1, fmt ='_', color = 'black')
+plt.title('Capacitance')
+plt.legend(handles=[red_patch, orange_patch, yellow_patch, green_patch, blue_patch])
 plt.savefig("capac_large_modular.png")
