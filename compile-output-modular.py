@@ -3,6 +3,7 @@ import pandas as pd
 import os
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
+import math
 
 def num_from_df(df, name, type):
   result = list(df.loc[(df["name"] == name) & (df["type"] == type)]["value"])[0] # There should always be exactly one element in this list
@@ -178,3 +179,38 @@ plt.errorbar(nums, capac, yerr = 1, fmt ='_', color = 'black')
 plt.title('Capacitance')
 plt.legend(handles=[red_patch, orange_patch, yellow_patch, green_patch, blue_patch])
 plt.savefig("capac_large_modular.png")
+
+cap = 2.0 * (2.0 / math.sqrt(math.pi))
+
+# Create a boolean list that represents the indices of expansion options with a capacitance difference less than cap
+remainders = [True if i < cap else False for i in capac]
+# print(remainders) # debug
+remainder_steps = [i for i, r in zip(steps, remainders) if r]
+remainder_capac = [i for i, r in zip(capac, remainders) if r]
+remainder_colors = [i for i, r in zip(colors, remainders) if r]
+remainder_nums = [i for i, r in zip(nums, remainders) if r]
+remainder_range = list(range(len(remainder_nums)))
+# print(remainder_steps) # debug
+# print(remainder_capac) # debug
+# print(remainder_colors) # debug
+
+# Graph the same graphs as before, but only include the expansion options for which the capacitance is less than cap
+plt.clf()
+plt.bar(remainder_range, remainder_steps, align='center', alpha=0.5, color=remainder_colors)
+plt.xticks(remainder_range, remainder_nums)
+plt.xlabel('Method of Expansion Number')
+plt.ylabel('Difference in standard deviations')
+plt.errorbar(remainder_range, remainder_steps, yerr = 1, fmt ='_', color = 'black')
+plt.title('Total Steps')
+plt.legend(handles=[red_patch, orange_patch, yellow_patch, green_patch, blue_patch])
+plt.savefig("steps_small_modular.png")
+
+plt.clf()
+plt.bar(remainder_range, remainder_capac, align='center', alpha=0.5, color=remainder_colors)
+plt.xticks(remainder_range, remainder_nums)
+plt.xlabel('Method of Expansion Number')
+plt.ylabel('|Difference in standard deviations|')
+plt.errorbar(remainder_range, remainder_capac, yerr = 1, fmt ='_', color = 'black')
+plt.title('Capacitance')
+plt.legend(handles=[red_patch, orange_patch, yellow_patch, green_patch, blue_patch])
+plt.savefig("capac_small_modular.png")
