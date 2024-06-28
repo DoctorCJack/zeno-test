@@ -141,6 +141,8 @@ for df in final_dfs:
   else:
     result += df
 
+result /= num_iters
+
 # print(result) # debug
 
 result.to_csv("out-modular.csv")
