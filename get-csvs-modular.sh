@@ -8,6 +8,11 @@ LB='\033[1;34m'
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color
 
+if [ ! -d ./csvs-modular ]; then
+    echo -e "${ORANGE}Dir csvs-modular/ not found!${NC} Creating."
+    mkdir csvs-modular
+fi
+
 if [ ! -f ./checkpoint.csv ]; then
     echo -e "${ORANGE}File checkpoint.csv not found!${NC} Creating checkpoint file."
     firstBod=$(echo $(ls bods)[0] | cut -d. -f 1)
