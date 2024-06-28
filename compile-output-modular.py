@@ -134,7 +134,6 @@ for iter in range(num_iters):
 final_dfs = list(range(num_iters)) # List of dataframes
 for i in range(num_iters):
   final_dfs[i] = pd.read_csv(f"outs/out-{i}.csv").iloc[-1:, 1:] # So that I only have the numbers on the row AVERAGES
-  # print(final_dfs[i]) # debug
 
 result = None
 for df in final_dfs:
@@ -145,13 +144,9 @@ for df in final_dfs:
 
 result /= num_iters
 
-# print(result) # debug
-
 result.to_csv("out-modular.csv")
 # This redundancy is done so that I can make sure the csv is saved properly during debugging. The redundancy may be removed later.
 data = pd.read_csv("out-modular.csv")
-
-# print(data) # debug
 
 # Graph the total step differences and the absolute capacitance differences
 nums = list(range(num_mods - 1))
@@ -180,7 +175,10 @@ plt.clf()
 plt.bar(nums, capac, align='center', alpha=0.5, color=colors)
 plt.xticks(nums, nums)
 plt.xlabel('Method of Expansion Number')
-plt.ylabel('|Difference in standard deviations|')
+if interior_abs:
+  plt.ylabel('|Absolute difference in standard deviations|')
+else:
+  plt.ylabel('|Difference in standard deviations|')
 plt.errorbar(nums, capac, yerr = 1, fmt ='_', color = 'black')
 plt.title('Capacitance')
 plt.legend(handles=[red_patch, orange_patch, yellow_patch, green_patch, blue_patch])
@@ -189,15 +187,11 @@ plt.savefig("capac_large_modular.png")
 
 # Create a boolean list that represents the indices of expansion options with a capacitance difference less than cap
 remainders = [True if i < cap else False for i in capac]
-# print(remainders) # debug
 remainder_steps = [i for i, r in zip(steps, remainders) if r]
 remainder_capac = [i for i, r in zip(capac, remainders) if r]
 remainder_colors = [i for i, r in zip(colors, remainders) if r]
 remainder_nums = [i for i, r in zip(nums, remainders) if r]
 remainder_range = list(range(len(remainder_nums)))
-# print(remainder_steps) # debug
-# print(remainder_capac) # debug
-# print(remainder_colors) # debug
 
 # Graph the same graphs as before, but only include the expansion options for which the capacitance is less than cap
 plt.clf()
