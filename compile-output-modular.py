@@ -21,6 +21,7 @@ everything = dict(list()) # Dictionary where keys are bods and values are 2D lis
 dir = "./csvs-modular" # Where the input csvs are located
 num_mods = 2 + num_expansions # The first 2 are zeno-original and the base case in zeno-modified
 averages = [[0] * (num_mods - 1) for i in range(4)]
+interior_abs = False # Determines if we get the absolute value of the capacitance difference before or after averaging them
 
 # Process the files and put all the necessary data into data structures
 for filename in os.listdir(dir):
@@ -107,7 +108,7 @@ for iter in range(num_iters):
       mod_capac_mean = num_from_df(mod_df, "capacitance", "value")
       mod_capac_sd = num_from_df(mod_df, "capacitance", "std_dev")
       diff = (mod_capac_mean - og_capac_mean) / og_capac_sd
-      # diff = abs(diff) # For testing purposes
+      diff = abs(diff) if interior_abs else diff
       result += f"c{i - 1}:{round(diff, 6)}; "
       averages[3][i - 1] += diff
       df.loc[bod, f"c{i - 1}"] = round(diff, 6)
@@ -158,7 +159,7 @@ steps = data.iloc[:,1:num_mods].values.tolist()[0]
 capac = [abs(i) for i in data.iloc[:,(-num_mods + 1):].values.tolist()[0]]
 colors = ['red'] * 1 + ['orange'] * 5 + ['yellow'] * 3 + ['green'] * 9 + ['blue'] * 1
 
-cap = 2.0 * (2.0 / math.sqrt(math.pi))
+cap = 2.0 * (2.0 / math.sqrt(math.pi)) if interior_abs else 1.0
 
 red_patch = mpatches.Patch(color='red', label='Control')
 orange_patch = mpatches.Patch(color='orange', label='Constant >=e')
@@ -215,5 +216,6 @@ plt.xlabel('Method of Expansion Number')
 plt.ylabel('|Difference in standard deviations|')
 plt.title('Capacitance')
 plt.legend(handles=[red_patch, orange_patch, yellow_patch, green_patch, blue_patch])
-# plt.axhline(y = 2 / math.sqrt(math.pi), color='b', linestyle='-') # Only uncomment this line if getting the absolute value of capacitance before averaging.
+if interior_abs:
+  plt.axhline(y = 2 / math.sqrt(math.pi), color='b', linestyle='-') # Only uncomment this line if getting the absolute value of capacitance before averaging
 plt.savefig("capac_small_modular.png")
