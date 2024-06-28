@@ -213,9 +213,12 @@ plt.clf()
 plt.bar(remainder_range, remainder_capac, align='center', alpha=0.5, color=remainder_colors)
 plt.xticks(remainder_range, remainder_nums)
 plt.xlabel('Method of Expansion Number')
-plt.ylabel('|Difference in standard deviations|')
+if interior_abs:
+  plt.ylabel('|Absolute difference in standard deviations|')
+else:
+  plt.ylabel('|Difference in standard deviations|')
 plt.title('Capacitance')
 plt.legend(handles=[red_patch, orange_patch, yellow_patch, green_patch, blue_patch])
 if interior_abs:
-  plt.axhline(y = 2 / math.sqrt(math.pi), color='b', linestyle='-') # Only uncomment this line if getting the absolute value of capacitance before averaging
+  plt.axhline(y = 2 / math.sqrt(math.pi), color='b', linestyle='-')
 plt.savefig("capac_small_modular.png")
