@@ -107,6 +107,7 @@ for iter in range(num_iters):
       mod_capac_mean = num_from_df(mod_df, "capacitance", "value")
       mod_capac_sd = num_from_df(mod_df, "capacitance", "std_dev")
       diff = (mod_capac_mean - og_capac_mean) / og_capac_sd
+      # diff = abs(diff) # For testing purposes
       result += f"c{i - 1}:{round(diff, 6)}; "
       averages[3][i - 1] += diff
       df.loc[bod, f"c{i - 1}"] = round(diff, 6)
@@ -157,6 +158,8 @@ steps = data.iloc[:,1:num_mods].values.tolist()[0]
 capac = [abs(i) for i in data.iloc[:,(-num_mods + 1):].values.tolist()[0]]
 colors = ['red'] * 1 + ['orange'] * 5 + ['yellow'] * 3 + ['green'] * 9 + ['blue'] * 1
 
+cap = 2.0 * (2.0 / math.sqrt(math.pi))
+
 red_patch = mpatches.Patch(color='red', label='Control')
 orange_patch = mpatches.Patch(color='orange', label='Constant >=e')
 yellow_patch = mpatches.Patch(color='yellow', label='Constant <e')
@@ -180,9 +183,8 @@ plt.ylabel('|Difference in standard deviations|')
 plt.errorbar(nums, capac, yerr = 1, fmt ='_', color = 'black')
 plt.title('Capacitance')
 plt.legend(handles=[red_patch, orange_patch, yellow_patch, green_patch, blue_patch])
+plt.axhline(y = cap, color='r', linestyle='-')
 plt.savefig("capac_large_modular.png")
-
-cap = 2.0 * (2.0 / math.sqrt(math.pi))
 
 # Create a boolean list that represents the indices of expansion options with a capacitance difference less than cap
 remainders = [True if i < cap else False for i in capac]
@@ -213,4 +215,5 @@ plt.xlabel('Method of Expansion Number')
 plt.ylabel('|Difference in standard deviations|')
 plt.title('Capacitance')
 plt.legend(handles=[red_patch, orange_patch, yellow_patch, green_patch, blue_patch])
+# plt.axhline(y = 2 / math.sqrt(math.pi), color='b', linestyle='-') # Only uncomment this line if getting the absolute value of capacitance before averaging.
 plt.savefig("capac_small_modular.png")
