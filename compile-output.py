@@ -9,11 +9,12 @@ def num_from_df(df, name, type):
 
 # Get the number of expansions from config.cfg
 with open("config.cfg", "r") as f:
-  num_expansions = int(re.search("numExpansions=([0-9]+)", f.read()).groups()[0])
+  s = f.read()
+  num_expansions = int(re.search("numExpansions=([0-9]+)", s).groups()[0])
+  dir = os.path.expanduser(re.search("csvs=(.+)", s).groups()[0]) # Where the input csvs are located
 
 # Instantiate stuff
 everything = dict(list()) # Dictionary where keys are bods and values are lists of dataframes
-dir = "./csvs" # Where the input csvs are located
 num_mods = 2 + num_expansions # The first 2 are zeno-original and the base case in zeno-modified
 averages = [[0] * (num_mods - 1) for i in range(4)]
 

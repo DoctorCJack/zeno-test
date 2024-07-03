@@ -15,10 +15,11 @@ with open("config.cfg", "r") as f:
   s = f.read()
   num_expansions = int(re.search("numExpansions=([0-9]+)", s).groups()[0])
   num_iters = int(re.search("numIters=([0-9]+)", s).groups()[0])
+  dir = os.path.expanduser(re.search("csvsModular=(.+)", s).groups()[0]) # Where the input csvs are located
+  outs = os.path.expanduser(re.search("outs=(.+)", s).groups()[0])
 
 # Instantiate stuff
 everything = dict(list()) # Dictionary where keys are bods and values are 2D lists of dataframes
-dir = "./csvs-modular" # Where the input csvs are located
 num_mods = 2 + num_expansions # The first 2 are zeno-original and the base case in zeno-modified
 averages = [[0] * (num_mods - 1) for i in range(4)]
 interior_abs = False # Determines if we get the absolute value of the capacitance difference before or after averaging them
@@ -124,16 +125,16 @@ for iter in range(num_iters):
     result += f"\b\b]\n"
 
   # Write output into the output files
-  if not os.path.isdir("./outs"):
-    os.mkdir("./outs")
-  with open(f"outs/out-{iter}.txt", "w") as f:
+  if not os.path.isdir(outs):
+    os.mkdir(outs)
+  with open(f"{outs}/out-{iter}.txt", "w") as f:
     f.write(result)
-  df.to_csv(f"outs/out-{iter}.csv")
+  df.to_csv(f"{outs}/out-{iter}.csv")
 
 # Compile the output files in ./outs
 final_dfs = list(range(num_iters)) # List of dataframes
 for i in range(num_iters):
-  final_dfs[i] = pd.read_csv(f"outs/out-{i}.csv").iloc[-1:, 1:] # So that I only have the numbers on the row AVERAGES
+  final_dfs[i] = pd.read_csv(f"{outs}/out-{i}.csv").iloc[-1:, 1:] # So that I only have the numbers on the row AVERAGES
 
 result = None
 for df in final_dfs:

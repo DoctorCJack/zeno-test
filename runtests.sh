@@ -10,7 +10,7 @@ LB='\033[1;34m'
 ORANGE='\033[0;33m'
 NC='\033[0m' # No Color
 
-f=${1:-bods/unit-sphere.bod}
+f=${1:-${bods}/unit-sphere.bod}
 e=${2:-0}
 
 numWalks=1000000

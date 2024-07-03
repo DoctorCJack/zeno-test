@@ -8,17 +8,17 @@ LB='\033[1;34m'
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color
 
-if [ ! -d ./csvs-modular ]; then
+if [ ! -d ${csvsModular} ]; then
     echo -e "${ORANGE}Dir csvs-modular/ not found!${NC} Creating."
-    mkdir csvs-modular
+    mkdir ${csvsModular}
 fi
 
 if [ ! -f ./checkpoint.csv ]; then
     echo -e "${ORANGE}File checkpoint.csv not found!${NC} Creating checkpoint file."
-    firstBod=$(echo $(ls bods)[0] | cut -d. -f 1)
+    firstBod=$(echo $(ls ${bods})[0] | cut -d. -f 1)
     echo -e "iter,0\nbod,${firstBod}\nexpansion,0" > checkpoint.csv
 else
-    echo -e "${RED}CAUTION!${NC} If you want to restart the testing process, please delete checkpoint.csv."
+    echo -e "${ORANGE}NOTICE!${NC} If you want to restart the testing process, please delete checkpoint.csv."
 fi
 
 iter=($(grep "iter" checkpoint.csv | cut -d "," -f2-))
@@ -35,7 +35,7 @@ firstIteration=true
 seedOffset=$(($numIters > 30 ? $numIters : 30))
 
 for ((i=${iter}; i<${numIters}; i++)); do
-    for b in $(ls bods); do
+    for b in $(ls ${bods}); do
         b=$(echo $b | cut -d. -f 1)
         # Start at the bod specified in the checkpoint file.
         if [ $foundStart = false ]; then
@@ -54,12 +54,12 @@ for ((i=${iter}; i<${numIters}; i++)); do
             # This solution isn't ideal (as it may be a bit slower if a break happens around the generation of a control), but it works.
             if [ $e = 0 ]; then
                 echo -e "Now creating ${LB}${i}-${b}-control.csv${NC}"
-                ${fp}/zeno-build/zeno -i bods/${b}.bod --num-walks=10000000 --num-interior-samples=100000 --seed=$(($i + $seedOffset)) --csv-output-file csvs-modular/${i}-${b}-control.csv --expansion=0 > /dev/null;
+                ${fp}/zeno-build/zeno -i ${bods}/${b}.bod --num-walks=10000000 --num-interior-samples=100000 --seed=$(($i + $seedOffset)) --csv-output-file ${csvsModular}/${i}-${b}-control.csv --expansion=0 > /dev/null;
             fi
             # Update the checkpoint file.
             echo -e "iter,${i}\nbod,${b}\nexpansion,${e}" > checkpoint.csv
             echo -e "Now creating ${LB}${i}-${b}-${e}.csv${NC}"
-            ${fp}/zeno-build/zeno -i bods/${b}.bod --num-walks=10000000 --num-interior-samples=100000 --seed=${i} --csv-output-file csvs-modular/${i}-${b}-${e}.csv --expansion=$e > /dev/null;
+            ${fp}/zeno-build/zeno -i ${bods}/${b}.bod --num-walks=10000000 --num-interior-samples=100000 --seed=${i} --csv-output-file ${csvsModular}/${i}-${b}-${e}.csv --expansion=$e > /dev/null;
         done
     done
 done
