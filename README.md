@@ -1,7 +1,15 @@
 # zeno-test
 Files used for testing [DoctorCJack/ZENO](https://github.com/DoctorCJack/ZENO) (formerly [mvk1-nist/ZENO](https://github.com/mvk1-nist/ZENO)).<br><br>
-The files from [DoctorCJack/ZENO](https://github.com/DoctorCJack/ZENO) are assumed to be stored in a directory `~/zeno-modified`, but this can be changed in `config.cfg`.<br><br>
 Example outputs can be found in `csvs/`, `out.csv`, and `out.txt`.
+
+## Setup instructions
+
+- Follow the setup instructions for ZENO as seen [here](https://zeno.nist.gov/Compilation.html), but with the following changes:
+  - Change every instance of `$HOME` to the directory assigned to `fp` in `config.cfg`. However, you should still use `$HOME` instead of `~`.
+  - Run `git clone` on `https://github.com/DoctorCJack/ZENO.git` instead of `https://github.com/usnistgov/ZENO.git`.
+- Create a separate new directory and `git clone` this repo into it.
+- Change `config.cfg` to your preferences.
+- You should now be good to go.
 
 ## Brief description of each file
 
