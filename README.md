@@ -7,7 +7,7 @@ Example outputs can be found in `csvs/`, `out.csv`, and `out.txt`.
 - Follow the setup instructions for ZENO as seen [here](https://zeno.nist.gov/Compilation.html), but with the following changes:
   - Change every instance of `$HOME` to the directory assigned to `fp` in `config.cfg`. However, you should still use `$HOME` instead of `~`.
   - Run `git clone` on `https://github.com/DoctorCJack/ZENO.git` instead of `https://github.com/usnistgov/ZENO.git`.
-- Create a separate new directory and `git clone` this repo into it.
+- Run `git clone` on this repo into a separate directory (I usually have `zeno-modified` (`fp` in `config.cfg`) and `zeno-test` (the directory that contains this entire repo) both be in the same directory together).
 - Change `config.cfg` to your preferences.
 - You should now be good to go.
 
