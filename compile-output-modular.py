@@ -21,7 +21,6 @@ with open("config.cfg", "r") as f:
 # Instantiate stuff
 everything = dict(list()) # Dictionary where keys are bods and values are 2D lists of dataframes
 num_mods = 2 + num_expansions # The first 2 are zeno-original and the base case in zeno-modified
-averages = [[0] * (num_mods - 1) for i in range(4)]
 interior_abs = False # Determines if we get the absolute value of the capacitance difference before or after averaging them
 
 # Process the files and put all the necessary data into data structures
@@ -32,7 +31,7 @@ for filename in os.listdir(dir):
   regex = re.search("^([0-9]+)-(.*)-([0-9]+).csv$", filename)
   # If the filename didn't match, then match on the filename to get the list [<iteration number>, <bod filename>, "control"]
   if(regex == None):
-    regex = re.search("^([0-9+])-(.*)-(control).csv$", filename)
+    regex = re.search("^([0-9]+)-(.*)-(control).csv$", filename)
   g = regex.groups()
   # g[0] is the iteration number
   # g[1] is the bod filename
@@ -59,6 +58,7 @@ for iter in range(num_iters):
   # Both are worked on at the same time to prevent duplicate control flows
   df = pd.DataFrame(columns = cols)
   for bod in sorted(everything.keys()):
+    averages = [[0] * (num_mods - 1) for i in range(4)]
     df.loc[bod] = [0.0] * ((num_mods - 1) * 4)
     result += f"{bod}:\n    ["
     curr = everything[bod][iter]
