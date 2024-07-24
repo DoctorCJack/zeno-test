@@ -58,7 +58,7 @@ for iter in range(num_iters):
   # Both are worked on at the same time to prevent duplicate control flows
   df = pd.DataFrame(columns = cols)
   for bod in sorted(everything.keys()):
-    averages = [[0] * (num_mods - 1) for i in range(4)]
+    averages = [[0] * (num_mods - 1) for _ in range(4)]
     df.loc[bod] = [0.0] * ((num_mods - 1) * 4)
     result += f"{bod}:\n    ["
     curr = everything[bod][iter]
@@ -126,6 +126,7 @@ for iter in range(num_iters):
 
   # Write output into the output files
   if not os.path.isdir(outs):
+    print(f"Dir {outs} not found. Creating.")
     os.mkdir(outs)
   with open(f"{outs}/out-{iter}.txt", "w") as f:
     f.write(result)
@@ -155,7 +156,7 @@ steps = data.iloc[:,1:num_mods].values.tolist()[0]
 capac = [abs(i) for i in data.iloc[:,(-num_mods + 1):].values.tolist()[0]]
 colors = ['red'] * 1 + ['orange'] * 5 + ['yellow'] * 3 + ['green'] * 9 + ['blue'] * 1
 
-cap = 2.0 * (2.0 / math.sqrt(math.pi)) if interior_abs else 1.0
+cap = 2.0 * (2.0 / math.sqrt(math.pi)) if interior_abs else 10.0 * capac[0]
 
 red_patch = mpatches.Patch(color='red', label='Control')
 orange_patch = mpatches.Patch(color='orange', label='Constant >=e')

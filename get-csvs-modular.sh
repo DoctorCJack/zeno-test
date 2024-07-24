@@ -9,7 +9,7 @@ GREEN='\033[0;32m'
 NC='\033[0m' # No Color
 
 if [ ! -d ${csvsModular} ]; then
-    echo -e "${ORANGE}Dir csvs-modular/ not found!${NC} Creating."
+    echo -e "${ORANGE}Dir ${csvsModular} not found!${NC} Creating."
     mkdir ${csvsModular}
 fi
 
