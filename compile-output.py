@@ -15,7 +15,7 @@ with open("config.cfg", "r") as f:
   s = f.read()
   num_expansions = int(re.search("numExpansions=([0-9]+)", s).groups()[0])
   num_iters = int(re.search("numIters=([0-9]+)", s).groups()[0])
-  dir = os.path.expanduser(re.search("csvsModular=(.+)", s).groups()[0]) # Where the input csvs are located
+  dir = os.path.expanduser(re.search("csvs=(.+)", s).groups()[0]) # Where the input csvs are located
   outs = os.path.expanduser(re.search("outs=(.+)", s).groups()[0])
 
 # Instantiate stuff
@@ -109,7 +109,7 @@ for df in final_dfs:
 
 result.loc["std_dev"] = result.loc["std_dev"] ** 0.5
 
-result.to_csv("out-modular.csv")
+result.to_csv("out.csv")
 data = result # Leftover stuff, may fix in a later update
 
 # Graph the total step differences and the absolute capacitance differences
@@ -134,7 +134,7 @@ plt.ylabel('Difference')
 plt.errorbar(nums, steps, yerr = steps_sd, fmt ='_', color = 'black')
 plt.title('Total Steps')
 plt.legend(handles=[red_patch, orange_patch, yellow_patch, green_patch, blue_patch])
-plt.savefig("steps_large_modular.png")
+plt.savefig("steps_large.png")
 
 plt.clf()
 plt.figure(figsize=(9,6))
@@ -149,7 +149,7 @@ plt.errorbar(nums, capac, yerr = capac_sd, fmt ='_', color = 'black')
 plt.title('Capacitance')
 plt.legend(handles=[red_patch, orange_patch, yellow_patch, green_patch, blue_patch])
 plt.axhline(y = capac[0] + capac_sd[0], color='r', linestyle=':')
-plt.savefig("capac_large_modular.png")
+plt.savefig("capac_large.png")
 
 # Create a boolean list that represents the indices of expansion options we want to keep
 c_m = capac[0] # control mean
@@ -172,7 +172,7 @@ plt.xlabel('Method of Expansion Number')
 plt.ylabel('Difference')
 plt.title('Total Steps')
 plt.legend(handles=[red_patch, orange_patch, yellow_patch, green_patch, blue_patch])
-plt.savefig("steps_small_modular.png")
+plt.savefig("steps_small.png")
 
 plt.clf()
 plt.figure(figsize=(9,6))
@@ -186,4 +186,4 @@ else:
 plt.title('Capacitance')
 plt.legend(handles=[red_patch, orange_patch, yellow_patch, green_patch, blue_patch])
 plt.axhline(y = capac[0] + capac_sd[0], color='r', linestyle=':')
-plt.savefig("capac_small_modular.png")
+plt.savefig("capac_small.png")
