@@ -185,4 +185,5 @@ else:
   plt.ylabel('|Difference|')
 plt.title('Capacitance')
 plt.legend(handles=[red_patch, orange_patch, yellow_patch, green_patch, blue_patch])
+plt.axhline(y = capac[0] + capac_sd[0], color='r', linestyle=':')
 plt.savefig("capac_small_modular.png")
