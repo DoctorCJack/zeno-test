@@ -118,37 +118,40 @@ steps = data.iloc[0,0:(num_mods - 1)].values.tolist()
 steps_sd = data.iloc[1,0:(num_mods - 1)].values.tolist()
 capac = [abs(i) for i in data.iloc[0,(-num_mods + 1):].values.tolist()]
 capac_sd = [abs(i) for i in data.iloc[1,(-num_mods + 1):].values.tolist()]
-colors = ['red'] * 1 + ['orange'] * 5 + ['yellow'] * 3 + ['green'] * 9 + ['blue'] * 1
+colors = ['red'] * 1 + ['orange'] * 3 + ['yellow'] * 5 + ['green'] * 9 + ['#007fff'] * 3 + ['#003fff'] * 3 + ['#0000ff'] * 3 + ['purple'] * 3
 
-red_patch = mpatches.Patch(color='red', label='Control')
-orange_patch = mpatches.Patch(color='orange', label='Constant >=e')
-yellow_patch = mpatches.Patch(color='yellow', label='Constant <e')
-green_patch = mpatches.Patch(color='green', label='Proportional')
-blue_patch = mpatches.Patch(color='blue', label='Random')
+red_patch = mpatches.Patch(color = 'red', label = 'Control')
+orange_patch = mpatches.Patch(color = 'orange', label = 'Constant <e')
+yellow_patch = mpatches.Patch(color = 'yellow', label = 'Constant >=e')
+green_patch = mpatches.Patch(color = 'green', label = 'Proportional')
+blue_patch = mpatches.Patch(color = 'blue', label = 'Random')
+purple_patch = mpatches.Patch(color = 'purple', label = 'Piecewise')
 
-plt.figure(figsize=(9,6))
-plt.bar(nums, steps, align='center', alpha=0.5, color=colors)
+handles = [red_patch, orange_patch, yellow_patch, green_patch, blue_patch, purple_patch]
+
+plt.figure(figsize = (9,6))
+plt.bar(nums, steps, align = 'center', alpha = 0.5, color = colors)
 plt.xticks(nums, nums)
 plt.xlabel('Method of Expansion Number')
 plt.ylabel('Difference')
-plt.errorbar(nums, steps, yerr = steps_sd, fmt ='_', color = 'black')
+plt.errorbar(nums, steps, yerr = steps_sd, fmt = '_', color = 'black')
 plt.title('Total Steps')
-plt.legend(handles=[red_patch, orange_patch, yellow_patch, green_patch, blue_patch])
+plt.legend(handles = handles)
 plt.savefig("steps_large.png")
 
 plt.clf()
-plt.figure(figsize=(9,6))
-plt.bar(nums, capac, align='center', alpha=0.5, color=colors)
+plt.figure(figsize = (9,6))
+plt.bar(nums, capac, align = 'center', alpha = 0.5, color = colors)
 plt.xticks(nums, nums)
 plt.xlabel('Method of Expansion Number')
 if interior_abs:
   plt.ylabel('|Absolute difference|')
 else:
   plt.ylabel('|Difference|')
-plt.errorbar(nums, capac, yerr = capac_sd, fmt ='_', color = 'black')
+plt.errorbar(nums, capac, yerr = capac_sd, fmt = '_', color = 'black')
 plt.title('Capacitance')
-plt.legend(handles=[red_patch, orange_patch, yellow_patch, green_patch, blue_patch])
-plt.axhline(y = capac[0] + capac_sd[0], color='r', linestyle=':')
+plt.legend(handles = handles)
+plt.axhline(y = capac[0] + capac_sd[0], color = 'r', linestyle = ':')
 plt.savefig("capac_large.png")
 
 # Create a boolean list that represents the indices of expansion options we want to keep
@@ -166,17 +169,17 @@ remainder_range = list(range(len(remainder_nums)))
 # Graph the same graphs as before, but only include the expansion options that we want to keep
 plt.clf()
 plt.figure(figsize=(9,6))
-plt.bar(remainder_range, remainder_steps, align='center', alpha=0.5, color=remainder_colors)
+plt.bar(remainder_range, remainder_steps, align = 'center', alpha = 0.5, color = remainder_colors)
 plt.xticks(remainder_range, remainder_nums)
 plt.xlabel('Method of Expansion Number')
 plt.ylabel('Difference')
 plt.title('Total Steps')
-plt.legend(handles=[red_patch, orange_patch, yellow_patch, green_patch, blue_patch])
+plt.legend(handles = handles)
 plt.savefig("steps_small.png")
 
 plt.clf()
-plt.figure(figsize=(9,6))
-plt.bar(remainder_range, remainder_capac, align='center', alpha=0.5, color=remainder_colors)
+plt.figure(figsize = (9,6))
+plt.bar(remainder_range, remainder_capac, align = 'center', alpha = 0.5, color = remainder_colors)
 plt.xticks(remainder_range, remainder_nums)
 plt.xlabel('Method of Expansion Number')
 if interior_abs:
@@ -184,6 +187,6 @@ if interior_abs:
 else:
   plt.ylabel('|Difference|')
 plt.title('Capacitance')
-plt.legend(handles=[red_patch, orange_patch, yellow_patch, green_patch, blue_patch])
-plt.axhline(y = capac[0] + capac_sd[0], color='r', linestyle=':')
+plt.legend(handles = handles)
+plt.axhline(y = capac[0] + capac_sd[0], color = 'r', linestyle = ':')
 plt.savefig("capac_small.png")
